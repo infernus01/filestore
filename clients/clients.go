@@ -12,7 +12,7 @@ import (
 
 const serverURL = "http://localhost:8080"
 
-func addFiles(files []string) {
+func AddFiles(files []string) {
 	for _, file := range files {
 		content, err := ioutil.ReadFile(file)
 		if err != nil {
@@ -43,7 +43,7 @@ func addFiles(files []string) {
 }
 
 // Lists all files in the store
-func listFiles() {
+func ListFiles() {
 	resp, err := http.Get(serverURL + "/ls")
 	if err != nil {
 		fmt.Printf("Error listing files: %v\n", err)
@@ -57,7 +57,7 @@ func listFiles() {
 }
 
 // Removes a file from the store
-func removeFile(file string) {
+func RemoveFile(file string) {
 	req, err := http.NewRequest("DELETE", serverURL+"/rm?file="+file, nil)
 	if err != nil {
 		fmt.Printf("Error creating delete request: %v\n", err)
@@ -76,7 +76,7 @@ func removeFile(file string) {
 }
 
 // Word count of all files in the store
-func wordCount() {
+func WordCount() {
 	resp, err := http.Get(serverURL + "/wc")
 	if err != nil {
 		fmt.Printf("Error getting word count: %v\n", err)
@@ -89,7 +89,7 @@ func wordCount() {
 }
 
 // Most or least frequent words in the store
-func freqWords() {
+func FreqWords() {
 	resp, err := http.Get(serverURL + "/freq-words")
 	if err != nil {
 		fmt.Printf("Error getting frequent words: %v\n", err)

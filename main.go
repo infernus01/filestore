@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+
 	"github.com/infernus01/fileService/clients"
 	// "github.com/infernus01/fileService/filehandler"
 )
@@ -25,19 +26,19 @@ func main() {
 			fmt.Println("Usage: store add <file1> <file2> ...")
 			return
 		}
-		clients.addFiles(os.Args[2:])
+		clients.AddFiles(os.Args[2:])
 	case "ls":
-		clients.listFiles()
+		clients.ListFiles()
 	case "rm":
 		if len(os.Args) < 3 {
 			fmt.Println("Usage: store rm <fileName>")
 			return
 		}
-		clients.removeFile(os.Args[2])
+		clients.RemoveFile(os.Args[2])
 	case "wc":
-		clients.wordCount()
+		clients.WordCount()
 	case "freq-words":
-		clients.freqWords()
+		clients.FreqWords()
 	default:
 		fmt.Println("Unknown command. Use 'add', 'ls','rm','wc','freq-words'")
 
