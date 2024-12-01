@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/infernus01/fileService/clients"
+	"github.com/infernus01/fileService/pkg/clients"
 	// "github.com/infernus01/fileService/filehandler"
 )
 

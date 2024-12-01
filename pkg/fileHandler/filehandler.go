@@ -2,7 +2,6 @@ package filehandler
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 )
@@ -10,7 +9,7 @@ import (
 const storageDir = "./file_store"
 
 func HandleListFile(w http.ResponseWriter, r *http.Request) {
-	files, err := ioutil.ReadDir(storageDir)
+	files, err := os.ReadDir(storageDir)
 	if err != nil {
 		http.Error(w, "Error reading directory", http.StatusInternalServerError)
 		return
@@ -31,7 +30,7 @@ func HandleAddFile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	content := []byte("this is a file content")
-	err := ioutil.WriteFile(storageDir+"/"+fileName, content, 0644)
+	err := os.WriteFile(storageDir+"/"+fileName, content, 0644)
 	if err != nil {
 		http.Error(w, "failed to store file", http.StatusInternalServerError)
 		return
