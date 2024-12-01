@@ -6,15 +6,15 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
+	"os"
 )
 
-const serverURL = "http://localhost:8080"
+const serverURL = "http://localhost:8081"
 
-func AddFiles(files []string) {
+func AddFiles_c(files []string) {
 	for _, file := range files {
-		content, err := ioutil.ReadFile(file)
+		content, err := os.ReadFile(file)
 		if err != nil {
 			fmt.Printf("Error reading file %s: %v\n", file, err)
 			continue
@@ -43,8 +43,8 @@ func AddFiles(files []string) {
 }
 
 // Lists all files in the store
-func ListFiles() {
-	resp, err := http.Get(serverURL + "/ls")
+func ListFiles_c() {
+	resp, err := http.Get(serverURL + "/list")
 	if err != nil {
 		fmt.Printf("Error listing files: %v\n", err)
 		return
@@ -57,7 +57,7 @@ func ListFiles() {
 }
 
 // Removes a file from the store
-func RemoveFile(file string) {
+func RemoveFile_c(file string) {
 	req, err := http.NewRequest("DELETE", serverURL+"/rm?file="+file, nil)
 	if err != nil {
 		fmt.Printf("Error creating delete request: %v\n", err)

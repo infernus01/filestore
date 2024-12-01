@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	filehandler "github.com/infernus01/fileService/pkg/fileHandler"
+	filehandler "github.com/infernus01/FileServer/pkg/fileHandler"
 )
 
 func main() {
