@@ -52,14 +52,14 @@ A simple file store application consisting of a backend API and a CLI client. Th
 ### Starting the Server
 1. **Navigate to the server directory and run the server:**
    ```bash
-   cd server
-   go run main.go handlers.go
+   cd cmd/file-server
+   go run main.go
 2. **The server will start on port 8080.**
 ### Building the CLI
 1. **Navigate to the cli directory and build the CLI application:**
    ```bash
-   cd cli
-   go build -o store
+   cd cmd/store-client
+   go build -o store main.go
 2. **This will create an executable named store.**
 
 ## Commands
