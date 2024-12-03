@@ -40,9 +40,13 @@ A simple file store application consisting of a backend API and a CLI client. Th
 ---
 
 ## Requirements
-- **Go**: Version 1.16 or higher.
-- **Cobra**: For the CLI application.
+- **Go**: Version 1.16 or higher. [Download Go](https://golang.org/dl/)
+- **Cobra**: For the CLI application. [Install Cobra CLI](https://github.com/spf13/cobra#installing)
+- **Docker**: Required for containerization and running containerized applications. [Install Docker](https://docs.docker.com/get-docker/)
+- **kubectl**: Kubernetes command-line tool for interacting with Kubernetes clusters. [Install kubectl](https://kubernetes.io/docs/tasks/tools/)
+- **kind**: Tool for running local Kubernetes clusters using Docker container "nodes". [Install kind](https://kind.sigs.k8s.io/)
 
+> **Note:** Ensure that Docker is running before using `kind` and `kubectl`.
 ---
 
 ## Installation
