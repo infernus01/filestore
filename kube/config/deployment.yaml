@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-store-deployment
+  labels:
+    app: file-store
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-store
+  template:
+    metadata:
+      labels:
+        app: file-store
+    spec:
+      containers:
+        - name: file-store-container
+          image: file-store-image:tag
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
