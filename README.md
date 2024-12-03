@@ -18,6 +18,11 @@ A simple file store application consisting of a backend API and a CLI client. Th
   - [NOTE:](#note)
     - [Step 1:](#step-1)
     - [Step 2:](#step-2)
+  - [Kubernetes](#kubernetes)
+    - [Step 1.](#step-1-1)
+    - [Step 2. Check for pods in the same namespace using kubectl get pods and make sure the containers in the pod are up\& running](#step-2-check-for-pods-in-the-same-namespace-using-kubectl-get-pods-and-make-sure-the-containers-in-the-pod-are-up-running)
+    - [Step 3. Do a kubectl portforward service/file-service be able to access it outside the kind cluster](#step-3-do-a-kubectl-portforward-servicefile-service-be-able-to-access-it-outside-the-kind-cluster)
+    - [Step 4. Verify using curl](#step-4-verify-using-curl)
 - [License](#license)
     - [This project is licensed under the MIT License.](#this-project-is-licensed-under-the-mit-license)
 
@@ -169,6 +174,60 @@ docker run -p 8081:8080 fileserver:latest
 
 One would see the following logs and can access the server at `localhost:8081/files`
 `2024/12/03 06:31:10 Server is running on port 8080...`
+
+
+## Kubernetes
+
+To deploy on a Kubernetes cluster, we need to do a docker build and push to one's registry. Make sure the image is publicly available.
+Use kustomize tool and replace your image name accordingly in the kustomize.yaml. 
+These steps are tried on a Kind cluster:
+
+### Step 1. 
+```bash
+kubectl apply -k kube/config
+```
+You would see
+```
+service/file-store-service created
+deployment.apps/file-store-deployment created
+```
+➜  To get the deployments:
+```bash
+kubectl get deployments
+```
+You would see
+```plaintext
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+file-store-deployment   1/1     1            1           31s
+```
+  
+### Step 2. Check for pods in the same namespace using kubectl get pods and make sure the containers in the pod are up& running
+```bash
+kubectl get pods
+```
+You would see
+```plaintext
+NAME                                     READY   STATUS    RESTARTS   AGE
+file-store-deployment-7f9dd45957-pj2pd   1/1     Running   0          10s
+```
+
+### Step 3. Do a kubectl portforward service/file-service be able to access it outside the kind cluster
+
+```bash
+kubectl port-forward services/file-store-service 8080:8080
+```
+You would see:
+```plaintext
+Forwarding from 127.0.0.1:8080 -> 8080
+Forwarding from [::1]:8080 -> 8080
+Handling connection for 8080
+Handling connection for 8080
+```
+
+### Step 4. Verify using curl
+```
+curl http://localhost:8080/files  
+```
 
 
 # License
