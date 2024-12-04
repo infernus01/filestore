@@ -10,12 +10,6 @@ import (
 
 var fileStore = NewFileStore()
 
-func (fs *FileStore) GetFile(filename string) (string, bool) {
-	fs.mutex.RLock()
-	defer fs.mutex.RUnlock()
-	content, exists := fs.files[filename]
-	return content, exists
-}
 
 type FileStore struct {
 	files map[string]string // filename -> content
@@ -26,6 +20,12 @@ func NewFileStore() *FileStore {
 	return &FileStore{
 		files: make(map[string]string),
 	}
+}
+func (fs *FileStore) GetFile(filename string) (string, bool) {
+	fs.mutex.RLock()
+	defer fs.mutex.RUnlock()
+	content, exists := fs.files[filename]
+	return content, exists
 }
 
 func (fs *FileStore) UpdateFile(filename, content string) {
