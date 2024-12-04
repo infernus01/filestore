@@ -15,7 +15,7 @@ A simple file store application consisting of a backend API and a CLI client. Th
     - [Building the CLI](#building-the-cli)
   - [Commands](#commands)
   - [Examples](#examples)
-  - [NOTE:](#note)
+  - [Docker:](#docker)
     - [Step 1:](#step-1)
     - [Step 2:](#step-2)
   - [Kubernetes](#kubernetes)
@@ -164,7 +164,7 @@ A simple file store application consisting of a backend API and a CLI client. Th
     ./store freq-words -n 5 --order=dsc
     ```
 
-## NOTE:
+## Docker:
 You can also try using the Docker build
 ### Step 1:
    ```bash
