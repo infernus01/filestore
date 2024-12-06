@@ -19,7 +19,7 @@ A simple file store application consisting of a backend API and a CLI client. Th
     - [Step 1:](#step-1)
     - [Step 2:](#step-2)
   - [Kubernetes](#kubernetes)
-    - [Step 1.](#step-1-1)
+    - [Step 1. Deploy the Configuration to the Kubernetes Cluster](#step-1-deploy-the-configuration-to-the-kubernetes-cluster)
     - [Step 2. Check for pods in the same namespace using kubectl get pods and make sure the containers in the pod are up\& running](#step-2-check-for-pods-in-the-same-namespace-using-kubectl-get-pods-and-make-sure-the-containers-in-the-pod-are-up-running)
     - [Step 3. Do a kubectl portforward service/file-service be able to access it outside the kind cluster](#step-3-do-a-kubectl-portforward-servicefile-service-be-able-to-access-it-outside-the-kind-cluster)
     - [Step 4. Verify using curl](#step-4-verify-using-curl)
@@ -186,7 +186,7 @@ To deploy on a Kubernetes cluster, we need to do a docker build and push to one'
 Use kustomize tool and replace your image name accordingly in the kustomize.yaml. 
 These steps are tried on a Kind cluster:
 
-### Step 1. 
+### Step 1. Deploy the Configuration to the Kubernetes Cluster
 ```bash
 kubectl apply -k kube/config
 ```
